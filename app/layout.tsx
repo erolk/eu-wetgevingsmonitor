@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { MobileMenu } from "./components/MobileMenu";
 
 export const metadata: Metadata = {
   title: "EU-wetgevingsmonitor — wat besluit Brussel, en wat merk jij ervan?",
@@ -12,10 +13,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8fa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a101e" },
-  ],
+  // De site is altijd licht (geen dark-mode toggle), dus één lichte
+  // theme-color zodat de mobiele adresbalk niet donker wordt op een
+  // telefoon die in dark-mode staat.
+  themeColor: "#f7f8fa",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="nl" suppressHydrationWarning>
       <body className="min-h-screen font-sans antialiased">
-        <header className="border-b-2 border-accent bg-surface/80 backdrop-blur">
+        <header className="border-b-[0.5px] border-accent bg-surface/80 backdrop-blur">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-3 sm:py-5 flex items-center justify-between gap-2">
             <Link
               href="/"
@@ -43,13 +44,16 @@ export default function RootLayout({
               <Link href="/" className="hover:text-ink hidden sm:inline">
                 Beleidsterreinen
               </Link>
-              <Link href="/hoe-het-werkt" className="hover:text-ink">
-                <span className="sm:hidden">Proces</span>
-                <span className="hidden sm:inline">Hoe werkt het?</span>
+              <Link
+                href="/hoe-het-werkt"
+                className="hover:text-ink hidden sm:inline"
+              >
+                Hoe werkt het?
               </Link>
               <Link href="/over" className="hover:text-ink hidden sm:inline">
                 Over
               </Link>
+              <MobileMenu />
             </nav>
           </div>
         </header>

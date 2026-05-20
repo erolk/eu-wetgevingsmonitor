@@ -40,9 +40,11 @@ export default function Over() {
 
       <h2 className="font-serif text-xl mt-8">Status</h2>
       <p className="text-sm">
-        Dit is een eerste versie: het ontwerp, de uitleg over het proces en de
-        indeling per beleidsterrein staan. De live koppeling met EU-data wordt
-        nog gebouwd.
+        Per beleidsterrein tonen we nu de recente EU-voorstellen, live uit
+        EUR-Lex (dagelijks ververst). Daarop bouwen we verder: de exacte fase
+        per voorstel via de Legislative Observatory, een uitleg in gewone taal,
+        en de koppeling van EU-richtlijnen naar de Nederlandse
+        implementatiewet.
       </p>
 
       <h2 className="font-serif text-xl mt-8">Disclaimer</h2>

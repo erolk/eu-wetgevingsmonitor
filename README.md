@@ -24,8 +24,8 @@ npm run dev
 
 | Route | Wat |
 |---|---|
-| `/` | Homepage: intro + grid van beleidsterreinen |
-| `/beleidsterrein/[slug]` | Per beleidsterrein (nu placeholder, straks live wetgeving) |
+| `/` | Homepage: intro + grid van beleidsterreinen, met live aantal voorstellen per terrein |
+| `/beleidsterrein/[slug]` | Per beleidsterrein: live EU-voorstellen uit EUR-Lex, met procesbalk en link naar de volledige tekst |
 | `/hoe-het-werkt` | Het EU-wetgevingsproces + doorwerking naar Nederland |
 | `/over` | Achtergrond, bronnen en disclaimer |
 
@@ -46,9 +46,14 @@ wetgeving op beleidsterrein, met de DG-code erbij (`lib/themas.ts`).
 
 ## Roadmap
 
-- [ ] **Live data via EUR-Lex** (REST/SPARQL) — lopende voorstellen per terrein
-- [ ] **Legislative Observatory (OEIL)** koppelen voor procedure-fasen
-- [ ] Procesbalk per voorstel (Commissie → EP → Raad → trilogen → aangenomen)
+- [x] **Live data via EUR-Lex** (SPARQL) — recente voorstellen per terrein, met
+  NL-titel, type (verordening/richtlijn/besluit), EUROVOC-trefwoorden en CELEX.
+  Categorisatie via EUR-Lex `subject-matter`-codes (zie `lib/eurlex.ts`). Dagelijks
+  gecachet (ISR).
+- [x] Procesbalk per voorstel (Voorstel → EP → Raad → trilogen → aangenomen) —
+  visueel; de actieve fase staat nu vast op "Voorstel" tot OEIL gekoppeld is.
+- [ ] **Legislative Observatory (OEIL)** koppelen voor live procedure-fasen
+  (zet de procesbalk per voorstel op de juiste fase)
 - [ ] Burger-uitleg per voorstel (AI, net als de Wetgevingsmonitor)
 - [ ] Koppeling EU-richtlijn → Nederlandse implementatiewet
 - [ ] NL/EN taalschakelaar
