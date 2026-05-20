@@ -9,6 +9,7 @@ const TYPE_KLEUR: Record<ActType, string> = {
   Richtlijn: "bg-highlight text-ink",
   Besluit: "bg-ink text-paper",
   Aanbeveling: "border border-line text-mute",
+  Mededeling: "border border-line text-mute",
   Voorstel: "border border-line text-mute",
 };
 
@@ -40,6 +41,13 @@ export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
           {v.titel}
         </a>
       </h3>
+
+      <div className="rounded-md bg-accent/5 border border-accent/10 p-3">
+        <div className="text-[10px] font-medium uppercase tracking-wider text-accent mb-1">
+          Wat betekent dit voor jou?
+        </div>
+        <p className="text-sm leading-relaxed text-ink/85">{v.uitleg}</p>
+      </div>
 
       {v.onderwerpen.length > 0 && (
         <div className="flex flex-wrap gap-1.5">

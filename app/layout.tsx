@@ -17,6 +17,11 @@ export const viewport: Viewport = {
   // theme-color zodat de mobiele adresbalk niet donker wordt op een
   // telefoon die in dark-mode staat.
   themeColor: "#f7f8fa",
+  // Zet Android Chrome's 'Auto dark theme' uit (genereert
+  // <meta name="color-scheme" content="light">). Samen met
+  // color-scheme: only light in CSS voorkomt dit dat de telefoon de
+  // pagina automatisch donker maakt.
+  colorScheme: "light",
 };
 
 export default function RootLayout({

@@ -10,6 +10,7 @@
 // Bron: https://publications.europa.eu/webapi/rdf/sparql — open data (CC-BY).
 
 import { THEMAS } from "@/lib/themas";
+import { BURGERUITLEG } from "@/lib/burgeruitleg";
 
 const SPARQL_ENDPOINT = "https://publications.europa.eu/webapi/rdf/sparql";
 
@@ -27,6 +28,7 @@ export type ActType =
   | "Richtlijn"
   | "Besluit"
   | "Aanbeveling"
+  | "Mededeling"
   | "Voorstel";
 
 export type Voorstel = {
@@ -42,6 +44,10 @@ export type Voorstel = {
   themaSlugs: string[];
   /** Enkele EUROVOC-trefwoorden ter duiding. */
   onderwerpen: string[];
+  /** Korte uitleg in gewone taal: wat betekent dit voor de NL-burger? */
+  uitleg: string;
+  /** Bron van de uitleg: vooraf gegenereerd ("ai") of automatisch sjabloon. */
+  uitlegBron: "ai" | "sjabloon";
 };
 
 // EUR-Lex "subject-matter"-code → beleidsterrein-slug. Gebaseerd op de codes
@@ -165,13 +171,41 @@ ORDER BY DESC(?date)
 LIMIT ${LIMIET}`;
 }
 
+// Bepaal het type op basis van het instrument vóóraan in de titel. Niet via
+// "bevat het woord X", want titels verwijzen vaak naar ándere handelingen
+// (bv. een uitvoeringsbesluit dat een richtlijn of verordening wijzigt).
 function bepaalType(titel: string): ActType {
-  const t = titel.toUpperCase();
-  if (t.includes("VERORDENING")) return "Verordening";
-  if (t.includes("RICHTLIJN")) return "Richtlijn";
-  if (t.includes("AANBEVELING")) return "Aanbeveling";
-  if (t.includes("BESLUIT")) return "Besluit";
+  const up = titel.trim().toUpperCase();
+  if (up.startsWith("AANBEVELING")) return "Aanbeveling";
+  if (up.startsWith("MEDEDELING")) return "Mededeling";
+  const m = up.replace(/^(GEWIJZIGD\s+)?VOORSTEL\s+VOOR\s+(EEN|DE)\s+/, "");
+  if (/^(UITVOERINGS|GEDELEGEERDE\s+)?VERORDENING/.test(m)) return "Verordening";
+  if (m.startsWith("RICHTLIJN")) return "Richtlijn";
+  if (/^UITVOERINGSBESLUIT|^BESLUIT/.test(m)) return "Besluit";
+  if (m.startsWith("AANBEVELING")) return "Aanbeveling";
   return "Voorstel";
+}
+
+// Automatische terugval-uitleg op basis van het type en de onderwerpen, voor
+// voorstellen die (nog) geen vooraf gegenereerde samenvatting hebben.
+function sjabloonUitleg(type: ActType, onderwerpen: string[]): string {
+  const ond = onderwerpen.length
+    ? ` Onderwerp: ${onderwerpen.slice(0, 3).join(", ").toLowerCase()}.`
+    : "";
+  switch (type) {
+    case "Verordening":
+      return `Een verordening: zodra die is aangenomen, geldt hij direct in Nederland — de Tweede en Eerste Kamer stemmen er niet meer over.${ond}`;
+    case "Richtlijn":
+      return `Een richtlijn: Nederland moet dit binnen een termijn omzetten in eigen wetgeving, die dan in de Tweede en Eerste Kamer wordt behandeld.${ond}`;
+    case "Besluit":
+      return `Een besluit: bindend voor de partijen die het direct aangaat, meestal zonder brede omzetting in Nederland.${ond}`;
+    case "Aanbeveling":
+      return `Een aanbeveling: niet bindend, maar geeft aan welke richting de EU adviseert.${ond}`;
+    case "Mededeling":
+      return `Een mededeling van de Commissie: geen wet, maar een toelichting of standpunt binnen het wetgevingsproces.${ond}`;
+    default:
+      return `Een EU-voorstel dat nog door het wetgevingsproces moet.${ond}`;
+  }
 }
 
 type Binding = { value: string };
@@ -207,14 +241,18 @@ function rijNaarVoorstel(r: Row): Voorstel {
   ).slice(0, 5);
 
   const celex = r.celex.value;
+  const type = bepaalType(r.title.value);
+  const aiUitleg = BURGERUITLEG[celex];
   return {
     celex,
     titel: r.title.value.trim(),
     datum: r.date.value.slice(0, 10),
-    type: bepaalType(r.title.value),
+    type,
     url: `https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=CELEX:${celex}`,
     themaSlugs,
     onderwerpen,
+    uitleg: aiUitleg ?? sjabloonUitleg(type, onderwerpen),
+    uitlegBron: aiUitleg ? "ai" : "sjabloon",
   };
 }
 
