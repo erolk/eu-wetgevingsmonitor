@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * "EU Civic" — zakelijk, helder, geïnspireerd op de EU-vlag.
+ * Primair: Reflex Blue (#003399) — de officiële EU-blauw.
+ * Accent: EU-geel (#FFCC00) — spaarzaam, voor het logo-bolletje, actieve
+ * markers en highlights. NIET als achtergrond.
+ * Achtergrond: koel bijna-wit (light) / diep navy (dark).
+ */
+
+:root {
+  color-scheme: light;
+
+  --paper: 247 248 250;        /* koel bijna-wit — achtergrond */
+  --surface: 255 255 255;      /* kaart / menu — zuiver wit */
+  --ink: 12 27 58;             /* diep navy ink */
+  --mute: 90 102 125;          /* gedempt blauwgrijs */
+  --line: 214 220 230;         /* koele lichte border */
+  --accent: 0 51 153;          /* EU Reflex Blue #003399 */
+  --accent-dark: 0 38 115;     /* dieper blauw voor hover */
+  --highlight: 255 204 0;      /* EU-geel #FFCC00 */
+}
+
+.dark {
+  color-scheme: dark;
+
+  --paper: 10 16 30;            /* diep navy — achtergrond */
+  --surface: 18 26 46;          /* kaart iets lichter */
+  --ink: 230 234 242;           /* koel wit tekst */
+  --mute: 150 162 184;
+  --line: 42 54 80;
+  --accent: 96 146 232;         /* lichter blauw voor contrast op donker */
+  --accent-dark: 70 118 200;
+  --highlight: 255 213 51;      /* iets feller geel */
+}
+
+html,
+body {
+  background: rgb(var(--paper));
+  color: rgb(var(--ink));
+}
+
+body {
+  background-image:
+    radial-gradient(at 30% 12%, rgb(var(--accent) / 0.05) 0%, transparent 55%),
+    radial-gradient(at 82% 90%, rgb(var(--highlight) / 0.06) 0%, transparent 55%);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+}
+
+hr {
+  border-top: 1px solid rgb(var(--line));
+}
+
+/*
+ * Beleidsterrein-tegels — zuiver wit met koele border. Bij hover liften ze
+ * met een blauwe accent-border en zachte schaduw.
+ */
+.thema-tile {
+  background-color: rgb(var(--surface));
+  border-color: rgb(var(--ink) / 0.12);
+  border-width: 1px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+.thema-tile:hover {
+  border-color: rgb(var(--accent));
+  transform: translateY(-3px);
+  box-shadow:
+    0 10px 24px -6px rgb(var(--accent) / 0.18),
+    0 4px 10px -2px rgb(var(--ink) / 0.08);
+}
+.dark .thema-tile {
+  border-color: rgb(var(--line));
+}
+.dark .thema-tile:hover {
+  border-color: rgb(var(--accent));
+  box-shadow:
+    0 10px 28px -4px rgb(0 0 0 / 0.6),
+    0 4px 10px -2px rgb(0 0 0 / 0.4);
+}
