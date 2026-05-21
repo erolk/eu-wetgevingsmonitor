@@ -7,7 +7,6 @@ import { NL_MONITOR_URL } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Beleidsterreinen" },
-  { href: "/zoeken", label: "Zoeken" },
   { href: "/hoe-het-werkt", label: "Hoe werkt het?" },
   { href: "/over", label: "Over" },
   { href: "/contact", label: "Contact" },
