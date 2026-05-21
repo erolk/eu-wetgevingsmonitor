@@ -13,7 +13,7 @@ export default async function Home() {
         </h1>
         <p className="mt-4 max-w-2xl text-mute leading-relaxed">
           Veel Nederlanders weten nauwelijks wat er in de Europese Unie wordt
-          besloten, terwijl een groot deel van onze regels daar begint. Deze
+          besloten, terwijl een deel van onze regels daar begint. Deze
           site maakt per beleidsterrein zichtbaar welke EU-wetgeving in de maak
           is, waar die in het proces zit, en hoe die doorwerkt in Nederland.
         </p>
