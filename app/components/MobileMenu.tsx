@@ -88,7 +88,7 @@ export function MobileMenu() {
             className="flex items-center gap-2 px-4 py-2.5 text-sm text-ink hover:bg-paper transition border-t border-line mt-1"
           >
             <NLVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10" />
-            Naar NL-monitor
+            Naar NL-wetgevingsmonitor
           </a>
         </div>
       )}

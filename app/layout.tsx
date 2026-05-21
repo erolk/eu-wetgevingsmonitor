@@ -113,7 +113,7 @@ export default function RootLayout({
                 className="group hidden sm:inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 hover:border-accent hover:text-ink transition-colors"
               >
                 <NLVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
-                <span>NL-monitor</span>
+                <span>NL-wetgevingsmonitor</span>
               </a>
               <MobileMenu />
             </nav>
