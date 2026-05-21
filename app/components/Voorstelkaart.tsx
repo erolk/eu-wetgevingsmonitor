@@ -44,7 +44,7 @@ export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
 
       <div className="rounded-md bg-accent/5 border border-accent/10 p-3">
         <div className="text-[10px] font-medium uppercase tracking-wider text-accent mb-1">
-          Wat betekent dit voor jou?
+          Wat betekent dit voor Nederland?
         </div>
         <p className="text-sm leading-relaxed text-ink/85">{v.uitleg}</p>
       </div>
@@ -62,7 +62,36 @@ export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
         </div>
       )}
 
-      <Procesbalk actiefIndex={0} />
+      <div className="space-y-1.5 pt-1">
+        <div className="flex items-center justify-between gap-2 text-[11px]">
+          {v.aangenomen ? (
+            <span className="inline-flex items-center gap-1.5 font-medium text-accent">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Aangenomen
+              {v.aangenomenDatum ? ` op ${formatDatum(v.aangenomenDatum)}` : ""}
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-line" />
+              <span className="font-medium text-ink/70">In behandeling</span>
+              <span className="text-mute/80">
+                · exacte fase niet live beschikbaar
+              </span>
+            </span>
+          )}
+          {v.aangenomen && v.aangenomenUrl && (
+            <a
+              href={v.aangenomenUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent underline hover:no-underline shrink-0"
+            >
+              bekijk de wet →
+            </a>
+          )}
+        </div>
+        <Procesbalk aangenomen={v.aangenomen} />
+      </div>
 
       <div className="flex items-center justify-between gap-3 pt-1 text-xs">
         <span className="font-mono text-mute">{v.celex}</span>

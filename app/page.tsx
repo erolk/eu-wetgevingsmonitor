@@ -49,13 +49,8 @@ export default async function Home() {
                   href={`/beleidsterrein/${t.slug}`}
                   className="thema-tile block rounded-lg px-4 py-4 shadow-tile"
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="font-serif text-base sm:text-lg leading-tight text-ink">
-                      {t.naam}
-                    </div>
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-accent pt-1.5 shrink-0">
-                      {t.dg}
-                    </div>
+                  <div className="font-serif text-base sm:text-lg leading-tight text-ink">
+                    {t.naam}
                   </div>
                   <div className="text-xs text-mute mt-2 leading-relaxed">
                     {t.beschrijving}

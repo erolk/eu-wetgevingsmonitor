@@ -1,7 +1,8 @@
-// Compacte weergave van de fase waarin een EU-voorstel zit. De vijf stappen
-// volgen het proces uit /hoe-het-werkt. Voorstellen die we via EUR-Lex
-// binnenhalen zijn net ingediend en staan dus standaard op fase 0; live
-// fasevolging (via de Legislative Observatory, OEIL) komt later.
+// Compacte weergave van waar een EU-voorstel staat. Op basis van EUR-Lex
+// tonen we betrouwbaar twee statussen: "aangenomen" (er bestaat een definitieve
+// handeling) of "in behandeling". De exacte tussenfase (EP → Raad → trilogen)
+// volgen we nog niet live, dus die claimen we ook niet — bij "in behandeling"
+// markeren we alleen dat het voorstel is ingediend.
 
 export const FASEN = [
   "Voorstel",
@@ -11,42 +12,33 @@ export const FASEN = [
   "Aangenomen",
 ] as const;
 
-export function Procesbalk({
-  actiefIndex = 0,
-}: {
-  /** Index in FASEN van de huidige fase. */
-  actiefIndex?: number;
-}) {
+export function Procesbalk({ aangenomen }: { aangenomen: boolean }) {
+  const eind = FASEN.length - 1;
   return (
     <ol
       className="flex items-center gap-1"
-      aria-label={`Fase: ${FASEN[actiefIndex] ?? FASEN[0]} (${actiefIndex + 1} van ${FASEN.length})`}
+      aria-label={aangenomen ? "Status: aangenomen" : "Status: in behandeling"}
     >
       {FASEN.map((fase, i) => {
-        const gedaan = i < actiefIndex;
-        const actief = i === actiefIndex;
+        // Aangenomen → hele balk gevuld, eindpunt gemarkeerd.
+        // In behandeling → alleen 'Voorstel' is zeker bereikt; rest onbekend.
+        const gevuld = aangenomen ? true : i === 0;
+        const markeer = aangenomen && i === eind;
         return (
           <li key={fase} className="flex items-center gap-1 min-w-0">
             <span
               title={fase}
               className={[
                 "inline-block h-1.5 rounded-full transition-colors",
-                actief ? "w-6" : "w-4 sm:w-5",
-                gedaan
-                  ? "bg-accent"
-                  : actief
-                    ? "bg-highlight ring-1 ring-accent/40"
+                markeer ? "w-6" : "w-4 sm:w-5",
+                markeer
+                  ? "bg-highlight ring-1 ring-accent/40"
+                  : gevuld
+                    ? "bg-accent"
                     : "bg-line",
               ].join(" ")}
             />
-            <span
-              className={[
-                "text-[10px] leading-none whitespace-nowrap",
-                actief ? "text-ink font-medium" : "text-mute",
-                // toon alleen de actieve label op klein scherm; alle op groot
-                actief ? "inline" : "hidden lg:inline",
-              ].join(" ")}
-            >
+            <span className="text-[10px] leading-none whitespace-nowrap text-mute hidden lg:inline">
               {fase}
             </span>
           </li>

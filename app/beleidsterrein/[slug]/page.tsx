@@ -1,15 +1,34 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getThema, THEMAS } from "@/lib/themas";
 import { getVoorstellenVoorThema } from "@/lib/eurlex";
 import { Voorstelkaart } from "@/app/components/Voorstelkaart";
 import { FASEN } from "@/app/components/Procesbalk";
+import { Abonneer } from "@/app/components/Abonneer";
 
 export function generateStaticParams() {
   return THEMAS.map((t) => ({ slug: t.slug }));
 }
 
 type Params = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { slug } = await params;
+  const thema = getThema(slug);
+  if (!thema) return {};
+  const titel = `${thema.naam}: EU-voorstellen`;
+  return {
+    title: titel,
+    description: `${thema.beschrijving} Bekijk de lopende en aangenomen EU-voorstellen op het beleidsterrein ${thema.naam}.`,
+    alternates: { canonical: `/beleidsterrein/${thema.slug}` },
+    openGraph: {
+      title: `${titel} — ${thema.naam}`,
+      description: thema.beschrijving,
+      url: `/beleidsterrein/${thema.slug}`,
+    },
+  };
+}
 
 export default async function BeleidsterreinPage({ params }: Params) {
   const { slug } = await params;
@@ -29,7 +48,7 @@ export default async function BeleidsterreinPage({ params }: Params) {
 
       <header>
         <div className="text-xs text-mute uppercase tracking-wider mb-1">
-          Beleidsterrein · DG {thema.dg}
+          Beleidsterrein
         </div>
         <h1 className="font-serif text-2xl sm:text-3xl tracking-tight leading-tight">
           {thema.naam}
@@ -37,6 +56,9 @@ export default async function BeleidsterreinPage({ params }: Params) {
         <p className="mt-3 max-w-2xl text-mute leading-relaxed">
           {thema.beschrijving}
         </p>
+        <div className="mt-4">
+          <Abonneer themaNaam={thema.naam} />
+        </div>
       </header>
 
       <section className="space-y-4">
@@ -64,8 +86,10 @@ export default async function BeleidsterreinPage({ params }: Params) {
             <p className="text-sm text-mute leading-relaxed max-w-2xl">
               Recente voorstellen van de Europese Commissie op dit terrein,
               nieuwste eerst. De balk toont het wetgevingsproces (
-              {FASEN.join(" → ")}); nieuwe voorstellen staan aan het begin.
-              Klik door naar EUR-Lex voor de volledige tekst.
+              {FASEN.join(" → ")}); per voorstel zie je of het al is{" "}
+              <span className="text-ink">aangenomen</span> of nog{" "}
+              <span className="text-ink">in behandeling</span> is. Klik door
+              naar EUR-Lex voor de volledige tekst.
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {voorstellen.map((v) => (

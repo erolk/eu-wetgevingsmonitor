@@ -48,92 +48,169 @@ export type Voorstel = {
   uitleg: string;
   /** Bron van de uitleg: vooraf gegenereerd ("ai") of automatisch sjabloon. */
   uitlegBron: "ai" | "sjabloon";
+  /** Is het voorstel inmiddels aangenomen (er bestaat een definitieve handeling)? */
+  aangenomen: boolean;
+  /** Datum (yyyy-mm-dd) waarop de definitieve handeling werd vastgesteld. */
+  aangenomenDatum?: string;
+  /** Link naar de aangenomen handeling op EUR-Lex. */
+  aangenomenUrl?: string;
 };
 
-// EUR-Lex "subject-matter"-code → beleidsterrein-slug. Gebaseerd op de codes
-// die feitelijk op recente voorstellen voorkomen. Een code valt onder precies
-// één terrein; een voorstel erft de terreinen van al zijn codes.
+// EUR-Lex "subject-matter"-code → beleidsterrein-slug (de 32 EUR-Lex-thema's).
+// Gebaseerd op de codes die feitelijk op recente voorstellen voorkomen. Elke
+// code valt onder precies één terrein; een voorstel erft de terreinen van al
+// zijn codes (en kan dus onder meerdere terreinen verschijnen).
 const CODE_NAAR_THEMA: Record<string, string> = {
-  // Economie & Werk
-  PECO: "economie-en-werk", // economische politiek
-  UEM: "economie-en-werk", // economische en monetaire unie
-  EMPL: "economie-en-werk", // werkgelegenheid
-  SOCI: "economie-en-werk", // sociale bepalingen
-  COES: "economie-en-werk", // economische/sociale/territoriale samenhang
-  PREG: "economie-en-werk", // regionaal beleid
-  BUDG: "economie-en-werk", // begroting
-  FIN: "economie-en-werk", // financiële bepalingen (EU-begroting)
+  // Landbouw
+  AGRI: "landbouw", // landbouw en visserij
+  SILV: "landbouw", // bosbouw
+  SEME: "landbouw", // zaai- en plantgoed
+  IPRM: "landbouw", // teeltmateriaal
 
-  // Interne Markt & Bedrijven
+  // Begroting
+  FIN: "begroting", // financiële bepalingen
+  FINC: "begroting", // financiële bepalingen EGKS
+  BUDG: "begroting", // begroting
+
+  // Consumenten
+  PROT: "consumenten", // consumentenbescherming
+  ICOT: "consumenten", // cosmetica, speelgoed
+
+  // Douane
+  TDC: "douane", // gemeenschappelijk douanetarief
+  TDCS: "douane", // douanerechten: schorsingen
+  TDCN: "douane", // douanerechten: nationale contingenten
+  TDCC: "douane", // douanerechten: communautaire contingenten
+  UD: "douane", // douane-unie
+
+  // Ontwikkelingssamenwerking
+  ACP: "ontwikkelingssamenwerking", // ACS-staten
+  FED: "ontwikkelingssamenwerking", // Europees Ontwikkelingsfonds
+  CDEV: "ontwikkelingssamenwerking", // ontwikkelingssamenwerking
+  PTOM: "ontwikkelingssamenwerking", // landen en gebieden overzee
+
+  // Digitale eengemaakte markt
+  TELE: "digitale-eengemaakte-markt", // telecommunicatie
+  INFQ: "digitale-eengemaakte-markt", // informatica
+
+  // Economische & monetaire zaken
+  PECO: "economische-en-monetaire-zaken", // economische politiek
+  UEM: "economische-en-monetaire-zaken", // economische en monetaire unie
+  LCC: "economische-en-monetaire-zaken", // vrij verkeer van kapitaal
+  BPAI: "economische-en-monetaire-zaken", // betalingsbalans
+
+  // Onderwijs, jeugd & sport
+  EFPJ: "onderwijs-jeugd-en-sport", // onderwijs, beroepsopleiding en jeugd
+
+  // Werk & sociale zaken
+  EMPL: "werk-en-sociale-zaken", // werkgelegenheid
+  SOCI: "werk-en-sociale-zaken", // sociale bepalingen
+  SECU: "werk-en-sociale-zaken", // veiligheid van werknemers/bevolking
+
+  // Energie
+  ENER: "energie", // energie
+  NUCL: "energie", // kernenergie
+  IEEE: "energie", // milieu, energie-efficiëntie
+
+  // Ondernemerschap & industrie
+  PIND: "ondernemerschap", // industriebeleid
+  INDU: "ondernemerschap", // industrie
+  PME: "ondernemerschap", // kleine en middelgrote ondernemingen
+  SIDE: "ondernemerschap", // staalindustrie
+  ACIE: "ondernemerschap", // staal
+
+  // Milieu & klimaat
+  ENV: "milieu-en-klimaat", // milieu
+  POLL: "milieu-en-klimaat", // vervuiling
+  DECH: "milieu-en-klimaat", // afval
+  IWAS: "milieu-en-klimaat", // afvalstoffen
+  ICHR: "milieu-en-klimaat", // chemische stoffen
+
+  // Externe betrekkingen
+  EXT: "externe-betrekkingen", // externe betrekkingen
+  ACIN: "externe-betrekkingen", // internationale overeenkomsten
+  AELE: "externe-betrekkingen", // Europese Vrijhandelsassociatie
+  COOP: "externe-betrekkingen", // samenwerking
+  ASSO: "externe-betrekkingen", // associatie-overeenkomst
+  ACCE: "externe-betrekkingen", // toetreding tot overeenkomst
+  ASTU: "externe-betrekkingen", // bijstand aan Oekraïne
+  MSWU: "externe-betrekkingen", // EU-maatregelen solidariteit Oekraïne
+  COPT: "externe-betrekkingen", // samenwerking met derde landen
+
+  // Buitenlandse handel
+  PCOM: "handel", // handelspolitiek
+  INV: "handel", // investeringen
+  GATT: "handel", // GATT
+  OMC: "handel", // Wereldhandelsorganisatie
+  CAFE: "handel", // koffie (grondstoffenovereenkomst)
+  CAC: "handel", // cacao (grondstoffenovereenkomst)
+
+  // Voedselveiligheid
+  PHYT: "voedselveiligheid", // fytosanitaire wetgeving
+  "D-AL": "voedselveiligheid", // levensmiddelen
+  "AL-A": "voedselveiligheid", // veevoeder
+  IOVC: "voedselveiligheid", // officiële/veterinaire controles
+  IPBI: "voedselveiligheid", // pesticiden, biociden
+  VETE: "voedselveiligheid", // veterinaire wetgeving
+  IGMO: "voedselveiligheid", // ggo's
+
+  // Buitenlands & veiligheidsbeleid
+  PESC: "buitenlands-en-veiligheidsbeleid", // GBVB
+
+  // Mensenrechten
+  DDLH: "mensenrechten", // rechten van de mens
+
+  // Institutionele zaken
+  INST: "institutionele-zaken", // bepalingen betreffende de instellingen
+  INFO: "institutionele-zaken", // inlichtingen en verificaties
+  IOTR: "institutionele-zaken", // overig
+  IAFO: "institutionele-zaken", // bijlage-bepalingen Unierecht
+
+  // Interne markt
   MARI: "interne-markt", // interne markt - beginselen
+  ETEC: "interne-markt", // technische belemmeringen
   LES: "interne-markt", // vrijheid van vestiging
   LCP: "interne-markt", // vrij verkeer van personen
-  ETEC: "interne-markt", // technische belemmeringen
-  PROT: "interne-markt", // consumentenbescherming
-  PIND: "interne-markt", // industriebeleid
   PROP: "interne-markt", // intellectuele/industriële eigendom
+  HARM: "interne-markt", // harmonisatie van wetgeving
   RAPL: "interne-markt", // aanpassing van de wetgeving
+  IMVT: "interne-markt", // motorvoertuigen (typegoedkeuring)
 
-  // Digitaal & Technologie
-  TELE: "digitaal", // telecommunicatie
-  TECN: "digitaal", // technologie
-  RDT: "digitaal", // onderzoek en technologische ontwikkeling
+  // Justitie, vrijheid & veiligheid
+  DISC: "justitie-vrijheid-veiligheid", // non-discriminatie
+  PDON: "justitie-vrijheid-veiligheid", // bescherming van gegevens
+  "J-AI": "justitie-vrijheid-veiligheid", // justitie en binnenlandse zaken
+  ELSJ: "justitie-vrijheid-veiligheid", // ruimte vrijheid, veiligheid en recht
+  COJP: "justitie-vrijheid-veiligheid", // justitiële samenwerking strafzaken
+  COJC: "justitie-vrijheid-veiligheid", // justitiële samenwerking burgerzaken
+  IMMI: "justitie-vrijheid-veiligheid", // migratie- en asielbeleid
 
-  // Klimaat & Energie
-  ENER: "klimaat-en-energie", // energie
-  NUCL: "klimaat-en-energie", // kernenergie
-
-  // Milieu & Natuur
-  ENV: "milieu-en-natuur", // milieu
-  POLL: "milieu-en-natuur", // vervuiling
-  DECH: "milieu-en-natuur", // afval
-  ICHR: "milieu-en-natuur", // chemische stoffen
-
-  // Landbouw, Visserij & Voedsel
-  AGRI: "landbouw-en-voedsel", // landbouw en visserij
-  PECH: "landbouw-en-voedsel", // visserijbeleid
-  "D-AL": "landbouw-en-voedsel", // levensmiddelen
-  "AL-A": "landbouw-en-voedsel", // veevoeder
-  PHYT: "landbouw-en-voedsel", // fytosanitaire wetgeving
-
-  // Migratie & Asiel
-  IMMI: "migratie-en-asiel", // migratie- en asielbeleid
-
-  // Justitie & Grondrechten
-  "J-AI": "justitie-en-grondrechten", // justitie en binnenlandse zaken
-  ELSJ: "justitie-en-grondrechten", // ruimte van vrijheid, veiligheid en recht
-  COJP: "justitie-en-grondrechten", // justitiële samenwerking in strafzaken
-  PDON: "justitie-en-grondrechten", // bescherming van gegevens
-  DISC: "justitie-en-grondrechten", // non-discriminatie
-
-  // Handel & Internationaal
-  EXT: "handel-en-internationaal", // externe betrekkingen
-  PESC: "handel-en-internationaal", // gemeenschappelijk buitenlands beleid
-  PCOM: "handel-en-internationaal", // handelspolitiek
-  AELE: "handel-en-internationaal", // Europese Vrijhandelsassociatie
-  ACIN: "handel-en-internationaal", // internationale overeenkomsten
-  ASSO: "handel-en-internationaal", // associatie-overeenkomst
-  ACCE: "handel-en-internationaal", // toetreding tot overeenkomst
-  COOP: "handel-en-internationaal", // samenwerking
-  ACP: "handel-en-internationaal", // ACS-staten
-  INV: "handel-en-internationaal", // investeringen
-  ASTU: "handel-en-internationaal", // bijstand aan Oekraïne
-
-  // Financiële Sector & Belastingen
-  FISC: "financiele-sector", // belastingen
-  TVA: "financiele-sector", // btw
-  IVAT: "financiele-sector", // btw
-  LCC: "financiele-sector", // vrij verkeer van kapitaal
-  TDC: "financiele-sector", // gemeenschappelijk douanetarief
-  TDCN: "financiele-sector", // douanerechten: nationale contingenten
-  TDCS: "financiele-sector", // douanerechten: schorsingen
-
-  // Vervoer & Mobiliteit
-  TRAN: "vervoer-en-mobiliteit", // vervoer
-  RTR: "vervoer-en-mobiliteit", // trans-Europese netwerken
+  // Oceanen & visserij
+  PECH: "oceanen-en-visserij", // visserijbeleid
 
   // Volksgezondheid
   SANT: "volksgezondheid", // volksgezondheid
+  IMEP: "volksgezondheid", // geneesmiddelen
+  IMED: "volksgezondheid", // medische hulpmiddelen
+
+  // Regionaal beleid
+  COES: "regionaal-beleid", // economische/sociale/territoriale samenhang
+  PREG: "regionaal-beleid", // regionaal beleid
+
+  // Onderzoek & innovatie
+  RDT: "onderzoek-en-innovatie", // onderzoek en technologische ontwikkeling
+  TECN: "onderzoek-en-innovatie", // technologie
+  ESPA: "onderzoek-en-innovatie", // ruimte
+
+  // Belastingen
+  FISC: "belastingen", // belastingen
+  TVA: "belastingen", // btw
+  IVAT: "belastingen", // btw
+
+  // Vervoer
+  TRAN: "vervoer", // vervoer
+  RTR: "vervoer", // trans-Europese netwerken
+  IAPA: "vervoer", // compensatie/bijstand luchtreizigers
 };
 
 const GELDIGE_SLUGS = new Set(THEMAS.map((t) => t.slug));
@@ -153,6 +230,8 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 SELECT ?celex ?date ?title
   (GROUP_CONCAT(DISTINCT ?code; separator=",") AS ?codes)
   (GROUP_CONCAT(DISTINCT ?evLabel; separator="|") AS ?eurovoc)
+  (SAMPLE(?ac) AS ?aangenomen)
+  (MIN(?ad) AS ?aangenomenDatum)
 WHERE {
   ?work cdm:resource_legal_id_celex ?celex .
   ?work cdm:work_date_document ?date .
@@ -165,6 +244,10 @@ WHERE {
              BIND(REPLACE(STR(?sm), ".*/", "") AS ?code) }
   OPTIONAL { ?work cdm:work_is_about_concept_eurovoc ?ev .
              ?ev skos:prefLabel ?evLabel . FILTER(LANG(?evLabel)="nl") }
+  OPTIONAL { ?adopt cdm:resource_legal_adopts_resource_legal ?work .
+             ?adopt cdm:resource_legal_id_celex ?ac .
+             FILTER(STRSTARTS(STR(?ac), "3") && !CONTAINS(STR(?ac), "R("))
+             OPTIONAL { ?adopt cdm:work_date_document ?ad . } }
 }
 GROUP BY ?celex ?date ?title
 ORDER BY DESC(?date)
@@ -215,6 +298,8 @@ type Row = {
   title: Binding;
   codes?: Binding;
   eurovoc?: Binding;
+  aangenomen?: Binding;
+  aangenomenDatum?: Binding;
 };
 
 function rijNaarVoorstel(r: Row): Voorstel {
@@ -243,6 +328,10 @@ function rijNaarVoorstel(r: Row): Voorstel {
   const celex = r.celex.value;
   const type = bepaalType(r.title.value);
   const aiUitleg = BURGERUITLEG[celex];
+
+  const aangenomenCelex = r.aangenomen?.value?.trim();
+  const aangenomen = !!aangenomenCelex;
+
   return {
     celex,
     titel: r.title.value.trim(),
@@ -253,6 +342,11 @@ function rijNaarVoorstel(r: Row): Voorstel {
     onderwerpen,
     uitleg: aiUitleg ?? sjabloonUitleg(type, onderwerpen),
     uitlegBron: aiUitleg ? "ai" : "sjabloon",
+    aangenomen,
+    aangenomenDatum: r.aangenomenDatum?.value?.slice(0, 10),
+    aangenomenUrl: aangenomen
+      ? `https://eur-lex.europa.eu/legal-content/NL/TXT/?uri=CELEX:${aangenomenCelex}`
+      : undefined,
   };
 }
 
@@ -280,7 +374,7 @@ export async function getVoorstellen(): Promise<VoorstellenResultaat> {
     const res = await fetch(url, {
       signal: controller.signal,
       headers: { Accept: "application/sparql-results+json" },
-      next: { revalidate: REVALIDATE_SECONDEN },
+      next: { revalidate: REVALIDATE_SECONDEN, tags: ["voorstellen"] },
     });
     if (!res.ok) return { voorstellen: [], fout: true };
 

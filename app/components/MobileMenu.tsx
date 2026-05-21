@@ -2,11 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { NLVlag } from "./NLVlag";
+import { NL_MONITOR_URL } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Beleidsterreinen" },
+  { href: "/zoeken", label: "Zoeken" },
   { href: "/hoe-het-werkt", label: "Hoe werkt het?" },
   { href: "/over", label: "Over" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function MobileMenu() {
@@ -76,6 +80,16 @@ export function MobileMenu() {
               {l.label}
             </Link>
           ))}
+          <a
+            href={NL_MONITOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 px-4 py-2.5 text-sm text-ink hover:bg-paper transition border-t border-line mt-1"
+          >
+            <NLVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10" />
+            Naar NL-monitor
+          </a>
         </div>
       )}
     </div>

@@ -330,5 +330,291 @@ export const BURGERUITLEG: Record<string, string> = {
     "Regelt een lening aan Oekraïne die wordt terugbetaald uit Russische tegoeden. Onderdeel van de financiële steun aan Oekraïne.",
   "52025PC0734":
     "Geeft toestemming om te onderhandelen over een visserijprotocol met Mauritanië. Betreft de EU-visserijvloot buiten Europese wateren.",
+  "52024PC0545R(01)":
+    "Sluit een akkoord zodat het EU-grensagentschap Frontex actief mag zijn in Bosnië en Herzegovina. Raakt grensbewaking en migratie aan de EU-buitengrens.",
+  "52025PC0738":
+    "Past de reserve van CO2-rechten aan voor het nieuwe emissiehandelssysteem voor gebouwen en wegvervoer. Kan op termijn de kosten van verwarmen en tanken beïnvloeden.",
+  "52025PC0718R(01)":
+    "Past het corona-herstelplan van Portugal aan. Betreft Portugees EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0714":
+    "Bepaalt het EU-standpunt over een lijst arbiters voor handelsgeschillen met Moldavië. Technische uitvoering van het associatieakkoord.",
+  "52025PC0742":
+    "Stap in het wetgevingsproces over geschillenbeslechting voor consumenten na het stopzetten van het EU-platform voor onlinegeschillen. Raakt je rechten bij online aankopen.",
+  "52025PC0715":
+    "Bepaalt het EU-standpunt over regels voor het redden van centrale clearinginstellingen in de EER. Technisch financieel toezicht.",
+  "52025PC0719":
+    "Bepaalt het EU-standpunt bij het nieuwe VN-verdrag over bescherming van zeeleven in internationale wateren. Gericht op natuur en biodiversiteit op volle zee.",
+  "52025PC0722":
+    "Past het corona-herstelplan van Frankrijk aan. Betreft Frans EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0731":
+    "Past het corona-herstelplan van Slovenië aan. Betreft Sloveens EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0730":
+    "Past het corona-herstelplan van Griekenland aan. Betreft Grieks EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0720":
+    "Past het corona-herstelplan van Tsjechië aan. Betreft Tsjechisch EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0841":
+    "Vereenvoudigt de informatieregels over duurzaamheid en risico's van beleggingsproducten. Moet beleggen begrijpelijker maken voor consumenten.",
+  "52025PC0840":
+    "Past de regels aan voor het pan-Europese persoonlijke pensioenproduct (PEPP). Bedoeld om zelf aanvullend pensioen sparen makkelijker te maken.",
+  "52025PC0842":
+    "Versterkt de regels voor bedrijfspensioenfondsen en pensioenadvies. Nederland moet dit omzetten; raakt de opbouw van aanvullend pensioen.",
+  "52025PC0732":
+    "Past het corona-herstelplan van Polen aan. Betreft Pools EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0721":
+    "Past het corona-herstelplan van Cyprus aan. Betreft Cypriotisch EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0836":
+    "Vereenvoudigt de uitvoering van de Europese AI-regels (AI Act), vooral voor kleinere bedrijven. Raakt hoe kunstmatige intelligentie in de EU wordt gereguleerd.",
+  "52025PC0837":
+    "Bundelt en vereenvoudigt een groot pakket digitale regels (waaronder delen van de AVG en datawetgeving). Moet digitale regels overzichtelijker maken; raakt privacy en databedrijven.",
+  "52025PC0713":
+    "Bepaalt het EU-standpunt binnen het verdrag tegen geweld tegen vrouwen, over aanbevelingen aan landen. Procedureel van aard.",
+  "52025PC0712":
+    "Bepaalt het EU-standpunt binnen het verdrag tegen geweld tegen vrouwen, op het vlak van justitie en asiel. Procedureel van aard.",
+  "52025PC0717":
+    "Past het corona-herstelplan van Letland aan. Betreft Lets EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0716":
+    "Past het corona-herstelplan van Oostenrijk aan. Betreft Oostenrijks EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0838":
+    "Voert een digitale 'bedrijfsportemonnee' in zodat ondernemingen makkelijker digitaal zakendoen met overheden in de EU. Vermindert administratie voor bedrijven.",
+  "52025PC0847":
+    "Maakt het makkelijker om militair materieel en personeel snel door de EU te vervoeren. Onderdeel van de Europese defensie en veiligheid.",
+  "52025PC0711":
+    "Past het corona-herstelplan van Malta aan. Betreft Maltees EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0710":
+    "Keurt de uitbetaling van EU-steun aan Oekraïne goed (vierde en zesde termijn). Onderdeel van het Oekraïnesteunpakket.",
+  "52025PC0689":
+    "Machtigt Frankrijk om toe te treden tot een Amerikaans verdrag ter bescherming van zeeschildpadden. Betreft Franse overzeese gebieden; gericht op natuur.",
+  "52025PC0692":
+    "Regelt deelname van IJsland aan het beveiligde satellietcommunicatieprogramma (GOVSATCOM) van de EU. Technische ruimtevaartsamenwerking.",
+  "52025PC0696":
+    "Regelt deelname van Noorwegen aan het beveiligde satellietcommunicatieprogramma (GOVSATCOM) van de EU. Technische ruimtevaartsamenwerking.",
+  "52025PC0694":
+    "Rondt de deelname van Noorwegen aan het beveiligde satellietcommunicatieprogramma (GOVSATCOM) van de EU af. Technische ruimtevaartsamenwerking.",
+  "52025PC0693":
+    "Rondt de deelname van IJsland aan het beveiligde satellietcommunicatieprogramma (GOVSATCOM) van de EU af. Technische ruimtevaartsamenwerking.",
+  "52025PC0685":
+    "Geeft het Europees Openbaar Ministerie en fraudebureau OLAF toegang tot btw-gegevens om fraude beter aan te pakken. Gericht op de bestrijding van belastingfraude.",
+  "52025PC0678":
+    "Regelt het delen van passagiersgegevens met Zwitserland om terrorisme en zware criminaliteit te bestrijden. Raakt de privacy van vliegreizigers.",
+  "52025PC0698":
+    "Bepaalt het EU-standpunt in de ministerraad van de Energiegemeenschap (met buurlanden). Gaat over energiesamenwerking in de regio.",
+  "52025PC0701":
+    "Regelt de EU-ondertekening van het verdrag dat schade door de Russische oorlog tegen Oekraïne moet vergoeden. Onderdeel van het Oekraïnebeleid.",
+  "52025PC0676":
+    "Rondt het akkoord met Zwitserland af over het delen van passagiersgegevens tegen terrorisme en zware criminaliteit. Raakt de privacy van vliegreizigers.",
+  "52025PC0674":
+    "Bepaalt het EU-standpunt in de algemene vergadering van de Internationale Maritieme Organisatie. Gaat over internationale scheepvaartregels.",
+  "52025PC0796":
+    "Stelt voor 2026 vast hoe EU-landen elkaar helpen bij de opvang van asielzoekers. Onderdeel van het migratie- en asielpact; raakt ook Nederland.",
+  "52025PC0665":
+    "Regelt EU-deelname (Euratom) aan een internationale organisatie rond kernenergie op het Koreaanse schiereiland. Een nichekwestie.",
+  "52025PC0670":
+    "Bepaalt het EU-standpunt over de begroting 2026 van de Vervoersgemeenschap (met de Westelijke Balkan). Intern-organisatorisch.",
+  "52025PC0669":
+    "Bepaalt het EU-standpunt over aanbestedingsregels van het secretariaat van de Vervoersgemeenschap. Intern-organisatorisch.",
+  "52025PC0677":
+    "Past het corona-herstelplan van Bulgarije aan. Betreft Bulgaars EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0675":
+    "Past het corona-herstelplan van Italië aan. Betreft Italiaans EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0655":
+    "Bepaalt het EU-standpunt over gegevensregels in de EER voor de aanpak van online seksueel kindermisbruik. Raakt kinderbescherming en privacy.",
+  "52025PC0657":
+    "Bepaalt het EU-standpunt over de koppeling van de emissiehandel met Zwitserland. Onderdeel van het klimaatbeleid.",
+  "52025PC0659":
+    "Regelt heffingsvrije invoerquota voor bepaalde landbouw- en industrieproducten. Een technische handelsmaatregel, vooral voor bedrijven.",
+  "52025PC0660":
+    "Schort tijdelijk invoerheffingen op voor bepaalde grondstoffen die EU-bedrijven niet zelf maken. Kan producten iets goedkoper maken; vooral voor de industrie.",
+  "52025PC0662":
+    "Stelt de toegestane vangsthoeveelheden voor bepaalde visbestanden vast. Relevant voor de visserij en een gezonde visstand.",
+  "52025PC0661":
+    "Stap in het wetgevingsproces over dwanglicenties voor onder meer medicijnen tijdens een crisis. Kan in noodsituaties de beschikbaarheid van producten vergroten.",
+  "52025PC0621":
+    "Maakt EU-geld vrij om ontslagen werknemers van batterijfabrikant Northvolt in Zweden te helpen aan nieuw werk. Betreft Zweden.",
+  "52025PC0656":
+    "Bepaalt het EU-standpunt over bescherming van de Middellandse Zee tegen vervuiling. Gericht op natuur en milieu.",
+  "52025PC0641":
+    "Geeft Italië toestemming om af te wijken van de btw-regels voor bedrijfsauto's. Geldt alleen voor Italië.",
+  "52025PC0653":
+    "Past het corona-herstelplan van Slowakije aan. Betreft Slowaaks EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0644":
+    "Past het corona-herstelplan van Estland aan. Betreft Estlands EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0647":
+    "Past het corona-herstelplan van België aan. Betreft Belgisch EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0646":
+    "Past het corona-herstelplan van Luxemburg aan. Betreft Luxemburgs EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0654":
+    "Past het corona-herstelplan van Roemenië aan. Betreft Roemeens EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0648":
+    "Past het corona-herstelplan van Kroatië aan. Betreft Kroatisch EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0652":
+    "Past verplichtingen aan in de EU-ontbossingsverordening voor bedrijven die grondstoffen verhandelen. Raakt producten zoals koffie, cacao en hout in de winkel.",
+  "52025PC0640":
+    "Stap in het wetgevingsproces over een sterker Europees agentschap voor maritieme veiligheid. Gericht op veiliger en schoner scheepvaartverkeer.",
+  "52025PC0635":
+    "Stap in het wetgevingsproces over strengere veiligheidsregels voor speelgoed. Direct relevant voor ouders en kinderen.",
+  "52025PC0636":
+    "Bepaalt het EU-standpunt over uitbreiding van de Energiegemeenschap met milieuregels. Gaat over energie- en milieusamenwerking met buurlanden.",
+  "52025PC0639":
+    "Regelt een beschermingsmaatregel voor Europese boeren bij het handelsakkoord met de Mercosur-landen. Kan de markt voor landbouwproducten beïnvloeden.",
+  "52025PC0627":
+    "Bepaalt het EU-standpunt over nieuwe internationale technische eisen voor voertuigen. Werkt door in auto's en hun veiligheid en milieuprestaties.",
+  "52025PC0727":
+    "Geeft toestemming om in de WTO te onderhandelen over invoerrechten op bepaalde staalproducten. Onderdeel van de handelspolitiek; raakt de staalsector.",
+  "52025PC0726":
+    "Stelt maatregelen vast om de Europese staalmarkt te beschermen tegen wereldwijde overcapaciteit. Gericht op banen en de staalindustrie.",
+  "52025PC0622":
+    "Verlengt en verbreedt het EU-standpunt over internationale luchtvaartregels, onder meer over uitstoot. Onderdeel van het klimaatbeleid voor de luchtvaart.",
+  "52025PC0633":
+    "Bepaalt het EU-standpunt over strengere internationale regels tegen kwik in producten. Gericht op gezondheid en milieu.",
+  "52025PC0855":
+    "Maakt EU-geld vrij voor herstel na de overstromingen in Valencia (Spanje) en cyclonen op Mayotte en Réunion (Frankrijk). Noodhulp bij rampen.",
+  "52025PC0593":
+    "Versterkt het EU-toezicht op eurolanden met grote financiële problemen. Gericht op de stabiliteit van de euro.",
+  "52025PC0589":
+    "Past de regels voor wegentol naar CO2-uitstoot van vrachtwagens met aanhangers aan. Nederland moet dit omzetten; raakt transportkosten en klimaat.",
+  "52025PC0577":
+    "Regelt de bijdragen van EU-landen aan het Europees Ontwikkelingsfonds voor 2025. Gaat over ontwikkelingssamenwerking.",
+  "52025PC0569":
+    "Regelt de meerjarige bijdragen van EU-landen aan het Europees Ontwikkelingsfonds. Gaat over ontwikkelingssamenwerking.",
+  "52025PC0591":
+    "Vereenvoudigt en stemt de EU-begrotingsregels beter op elkaar af. Onderdeel van het toezicht op de overheidsfinanciën, ook van Nederland.",
+  "52025PC0595":
+    "Past de regels aan voor noodleningen aan EU-landen met betalingsproblemen. Gericht op financiële stabiliteit.",
+  "52025PC0592":
+    "Stap in het wetgevingsproces over Europese statistieken over bevolking en wonen. Levert vergelijkbare cijfers; nauwelijks direct merkbaar.",
+  "52025PC0582":
+    "Bepaalt het EU-standpunt over internationale regels voor exportkredieten bij landbouwvliegtuigen. Een nichehandelskwestie.",
+  "52025PC0626":
+    "Stap in het wetgevingsproces over het EU-breed laten gelden van een rijontzegging. Wie in één EU-land zijn rijbewijs kwijtraakt, kan dat niet elders omzeilen.",
+  "52025PC0625":
+    "Bepaalt het EU-standpunt over toegang tot de rechter in milieuzaken onder het Verdrag van Aarhus. Raakt de rechtsbescherming bij milieubesluiten.",
+  "52025PC0629":
+    "Stap in het wetgevingsproces over vernieuwde regels voor rijbewijzen, waaronder een digitaal rijbewijs. Direct relevant voor automobilisten.",
+  "52025PC0630":
+    "Stap in het wetgevingsproces over herziening van de rechten van vliegtuigpassagiers bij vertraging en annulering. Raakt iedereen die vliegt.",
+  "52025PC0596":
+    "Stap in het wetgevingsproces over het monitoren en gezond houden van de bodem. Raakt landbouw, natuur en bouwgrond.",
+  "52025PC0568":
+    "Bepaalt het EU-standpunt over een maatschappelijk forum bij het handelsakkoord met Nieuw-Zeeland. Procedureel van aard.",
+  "52025PC0578":
+    "Bepaalt het EU-standpunt over samenwerkingsprioriteiten met Tunesië voor 2023-2027. Onderdeel van het nabuurschapsbeleid.",
+  "52025PC0584":
+    "Geeft toestemming om binnen de VN te onderhandelen over internationale samenwerking op belastinggebied. Gericht op eerlijkere wereldwijde belastingafspraken.",
+  "52025PC0564":
+    "Bepaalt het EU-standpunt binnen het internationale verdrag over plantgenetische hulpbronnen voor voedsel en landbouw. Gericht op biodiversiteit en voedselzekerheid.",
+  "52025PC0624":
+    "Keurt de uitbetaling van EU-leningen aan Oekraïne goed (vierde en vijfde termijn). Onderdeel van het Oekraïnesteunpakket.",
+  "52025PC0532":
+    "Bepaalt het EU-standpunt over comités onder het handelsakkoord met Kenia. Procedureel-organisatorisch.",
+  "52025PC0522":
+    "Bepaalt het EU-standpunt over bescherming van trekkende watervogels onder een internationaal verdrag. Gericht op natuur en biodiversiteit.",
+  "52025PC0533":
+    "Bepaalt het EU-standpunt op de grote conferentie over handel in bedreigde dier- en plantensoorten (CITES). Gericht op natuurbescherming.",
+  "52025PC0513":
+    "Past de verdeling aan van het EU-fonds dat lidstaten compenseert voor Brexit-schade. Betreft de EU-begroting.",
+  "52025PC0515":
+    "Verdeelt de vangstrechten onder het visserijakkoord met de Cookeilanden over EU-landen. Betreft de EU-visserijvloot in de Stille Oceaan.",
+  "52025PC0511":
+    "Rondt het duurzame visserijakkoord met de Cookeilanden af. Betreft de EU-visserijvloot buiten Europese wateren.",
+  "52025PC0567":
+    "Stap in het wetgevingsproces over het voorkomen van verlies van plastic korrels (pellets) om microplastic-vervuiling te verminderen. Gericht op een schoner milieu.",
+  "52025PC0512":
+    "Regelt ondertekening en voorlopige toepassing van het visserijakkoord met de Cookeilanden. Betreft de EU-visserijvloot in de Stille Oceaan.",
+  "52025PC0509":
+    "Stelt de vangsthoeveelheden voor 2026 vast in de Middellandse Zee en de Zwarte Zee. Relevant voor de visserij en de visstand.",
+  "52025PC0518":
+    "Bepaalt het EU-standpunt over een aanbeveling tegen discriminatie door kunstmatige intelligentie. Gericht op gelijke behandeling en mensenrechten.",
+  "52025PC0556":
+    "Past het corona-herstelplan van Spanje aan. Betreft Spaans EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0537":
+    "Past het Oekraïneplan onder de EU-faciliteit voor Oekraïne aan. Onderdeel van de wederopbouw- en hervormingssteun.",
+  "52025PC0498":
+    "Bepaalt het EU-standpunt over de Britse bijdrage aan EU-informatiesystemen voor wegvervoer. Technische uitvoering van het Brexit-akkoord.",
+  "52025PC0890":
+    "Schort bepaalde handelsvoordelen voor Israël onder het associatieakkoord op. Een politiek gevoelige handelsmaatregel.",
+  "52025PC0499":
+    "Voegt een nieuwe EU-regel toe aan het Windsor-kader voor Noord-Ierland. Technische uitvoering van de Brexit-afspraken.",
+  "52025PC0510":
+    "Machtigt EU-landen om een aanvullend verdrag over wederzijdse rechtshulp in strafzaken te ondertekenen. Gericht op grensoverschrijdende misdaadbestrijding.",
+  "52025PC0489":
+    "Bepaalt het EU-standpunt over comités onder de handelsovereenkomst met Chili. Procedureel-organisatorisch.",
+  "52025PC0490":
+    "Geeft toestemming om met Zuid-Korea te onderhandelen over het delen van passagiersgegevens tegen terrorisme en zware criminaliteit. Raakt privacy van vliegreizigers.",
+  "52025PC0487":
+    "Bepaalt het EU-standpunt over de regels voor Europese groene obligaties in de EER. Gericht op duurzame financiering.",
+  "52025PC0486":
+    "Bepaalt het EU-standpunt over toepassing van de Datagovernanceverordening in de EER. Gaat over het hergebruiken en delen van data.",
+  "52025PC0481":
+    "Geeft toestemming om de internationale olijfolie-overeenkomst te herzien. Een nichehandelskwestie.",
+  "52025PC0483":
+    "Bepaalt het EU-standpunt over uitwisseling van gegevens uit registers van wegvervoerbedrijven met het VK. Technische uitvoering van het Brexit-akkoord.",
+  "52025PC0506":
+    "Bepaalt het EU-standpunt op het congres van de Wereldpostunie. Gaat over internationale postregels.",
+  "52025PC0479":
+    "Rondt een akkoord met Zuid-Korea over digitale handel af. Kan online handel en datastromen met Zuid-Korea vergemakkelijken.",
+  "52025PC0480":
+    "Geeft toestemming om met Canada te onderhandelen over digitale handel. Gericht op makkelijker online handel.",
+  "52025PC0478":
+    "Regelt ondertekening van het akkoord met Zuid-Korea over digitale handel. Kan online handel met Zuid-Korea vergemakkelijken.",
+  "52025PC0467":
+    "Beëindigt het bosbouw- en houtakkoord met Liberia. Gaat over de invoer van hout en de aanpak van illegale houtkap.",
+  "52025PC0469":
+    "Regelt EU-ondertekening van de Internationale Koffieovereenkomst 2022. Gaat over wereldwijde samenwerking in de koffiesector.",
+  "52025PC0475":
+    "Keurt wijzigingen van de Internationale Cacao-overeenkomst goed. Gaat over wereldwijde samenwerking in de cacaosector.",
+  "52025PC0466":
+    "Bepaalt het EU-standpunt over een gezamenlijke lijst van ernstige overtredingen voor wegvervoerders met het VK. Technische uitvoering van het Brexit-akkoord.",
+  "52025PC0470":
+    "Rondt de toetreding tot de Internationale Koffieovereenkomst 2022 af. Gaat over wereldwijde samenwerking in de koffiesector.",
+  "52025PC0465":
+    "Geeft toestemming om te onderhandelen over een duurzaam visserijakkoord met Gabon. Betreft de EU-visserijvloot buiten Europese wateren.",
+  "52025PC0594":
+    "Stelt het Euratom-onderzoeksprogramma voor kernenergie en de EU-bijdrage aan kernfusieproject ITER vast. Gericht op onderzoek en innovatie.",
+  "52025PC0339":
+    "Rondt de interim-handelsovereenkomst met de Mercosur-landen (o.a. Brazilië en Argentinië) af. Een groot en omstreden handelsverdrag dat landbouw en industrie raakt.",
+  "52025PC0812":
+    "Rondt de vernieuwde handelsovereenkomst met Mexico af. Kan handel en prijzen van producten beïnvloeden.",
+  "52025PC0461":
+    "Breidt het programma tegen vervalsing van de euro uit naar niet-eurolanden. Gericht op de bescherming van het geld.",
+  "52025PC0599":
+    "Past de associatie met overzeese landen en gebieden aan, waaronder Groenland. Gaat over samenwerking en EU-financiering.",
+  "52025PC0598":
+    "Stelt een EU-instrument vast voor nucleaire veiligheid en het ontmantelen van kerncentrales. Gericht op veiligheid en afvalbeheer.",
+  "52025PC0810":
+    "Rondt een breed politiek en economisch partnerschap met Mexico af. Versterkt de samenwerking met Mexico.",
+  "52025PC0357":
+    "Rondt het brede partnerschap met de Mercosur-landen af. Onderdeel van het omstreden EU-Mercosur-akkoord.",
+  "52025PC0476":
+    "Stelt EU-geld vast voor de ontmanteling van de kerncentrale Ignalina in Litouwen. Gericht op nucleaire veiligheid; betreft Litouwen.",
+  "52025PC0338":
+    "Regelt ondertekening van de interim-handelsovereenkomst met de Mercosur-landen. Onderdeel van het omstreden EU-Mercosur-akkoord.",
+  "52025PC0462":
+    "Verlengt het programma om de euro tegen vervalsing te beschermen tot 2028-2034. Gericht op de bescherming van het geld.",
+  "52025PC0463":
+    "Stelt het EU-programma Justitie vast voor 2028-2034, gericht op de rechtsstaat en justitiële samenwerking. Ondersteunt toegang tot het recht.",
+  "52025PC0811":
+    "Regelt ondertekening van de vernieuwde handelsovereenkomst met Mexico. Kan handel en prijzen beïnvloeden.",
+  "52025PC0590":
+    "Stelt het EU-programma voor de interne markt en douane vast voor 2028-2034. Ondersteunt onder meer consumentenbescherming en eerlijke handel.",
+  "52025PC0809":
+    "Regelt ondertekening en voorlopige toepassing van het brede partnerschap met Mexico. Versterkt de samenwerking met Mexico.",
+  "52025PC0356":
+    "Regelt ondertekening en voorlopige toepassing van het brede partnerschap met de Mercosur-landen. Onderdeel van het omstreden EU-Mercosur-akkoord.",
+  "52025PC0477":
+    "Past het corona-herstelplan van Portugal aan. Betreft Portugees EU-geld en heeft geen gevolgen voor Nederland.",
+  "52025PC0474":
+    "Bepaalt het EU-standpunt over voortzetting van het akkoord voor vrachtvervoer over de weg met Oekraïne. Houdt de handelsroutes met Oekraïne open.",
+  "52025PC0471":
+    "Past de invoerheffingen op bepaalde Amerikaanse producten aan en opent quota. Onderdeel van de handelsrelatie met de VS; kan prijzen beïnvloeden.",
+  "52025PC0460":
+    "Geeft toestemming om de regels van de Wereldorganisatie voor diergezondheid te herzien. Gericht op de aanpak van dierziekten.",
+  "52025PC0472":
+    "Schort invoerrechten op voor bepaalde goederen, onder meer uit de VS. Onderdeel van de handelsrelatie met de VS; kan prijzen beïnvloeden.",
+  "52025PC0458":
+    "Stelt de vangsthoeveelheden voor de Oostzee voor 2026 vast. Relevant voor de visserij en een gezonde visstand.",
+  "52025PC0457":
+    "Past de vangsthoeveelheden voor bepaalde visbestanden aan. Relevant voor de visserij en de visstand.",
+  "52025PC0456":
+    "Kent Jordanië een EU-lening toe ter ondersteuning van de economie. Onderdeel van het nabuurschaps- en stabiliteitsbeleid.",
   // <APPEND>
 };

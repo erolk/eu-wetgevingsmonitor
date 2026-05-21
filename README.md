@@ -31,9 +31,11 @@ npm run dev
 
 ## Beleidsterreinen i.p.v. ministeries
 
-De EU heeft geen ministeries. Het uitvoerend orgaan is de **Europese
-Commissie**, opgedeeld in **Directoraten-Generaal (DG's)**. We groeperen
-wetgeving op beleidsterrein, met de DG-code erbij (`lib/themas.ts`).
+De EU heeft geen ministeries. We delen de wetgeving in volgens de **officiële
+EUR-Lex-indeling "Samenvattingen van de EU-wetgeving"**: **32 beleidsvelden**
+(zie `lib/themas.ts`, bron: <https://eur-lex.europa.eu/browse/summaries.html>).
+Voorstellen worden aan terreinen gekoppeld via de EUR-Lex `subject-matter`-codes
+(`lib/eurlex.ts`).
 
 ## Het wetgevingsproces (kort)
 
@@ -50,11 +52,19 @@ wetgeving op beleidsterrein, met de DG-code erbij (`lib/themas.ts`).
   NL-titel, type (verordening/richtlijn/besluit), EUROVOC-trefwoorden en CELEX.
   Categorisatie via EUR-Lex `subject-matter`-codes (zie `lib/eurlex.ts`). Dagelijks
   gecachet (ISR).
-- [x] Procesbalk per voorstel (Voorstel → EP → Raad → trilogen → aangenomen) —
-  visueel; de actieve fase staat nu vast op "Voorstel" tot OEIL gekoppeld is.
+- [x] Procesbalk per voorstel (Voorstel → EP → Raad → trilogen → aangenomen).
+- [x] **Aangenomen-status via EUR-Lex** — per voorstel betrouwbaar bepaald
+  (relatie `resource_legal_adopts_resource_legal`): "Aangenomen" + datum + link
+  naar de definitieve handeling, of "in behandeling". Dagelijks ververst. De
+  exacte tussenfase (EP/Raad/trilogen) claimen we bewust niet zolang die niet
+  live wordt gevolgd.
+- [x] Burger-uitleg per voorstel ("Wat betekent dit voor jou?") — korte
+  samenvatting in gewone taal op elke voorstelkaart. Vooraf gegenereerd en
+  opgeslagen in `lib/burgeruitleg.ts` (per CELEX); nieuwe voorstellen vallen
+  terug op een sjabloon-uitleg o.b.v. wettype + onderwerpen tot ze worden
+  bijgewerkt.
 - [ ] **Legislative Observatory (OEIL)** koppelen voor live procedure-fasen
   (zet de procesbalk per voorstel op de juiste fase)
-- [ ] Burger-uitleg per voorstel (AI, net als de Wetgevingsmonitor)
 - [ ] Koppeling EU-richtlijn → Nederlandse implementatiewet
 - [ ] NL/EN taalschakelaar
 - [ ] Stemmingen Europees Parlement per fractie

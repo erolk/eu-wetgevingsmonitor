@@ -2,11 +2,49 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { MobileMenu } from "./components/MobileMenu";
+import { EUVlag } from "./components/EUVlag";
+import { NLVlag } from "./components/NLVlag";
+import { SITE_NAAM, SITE_URL, NL_MONITOR_URL } from "@/lib/site";
+
+const BESCHRIJVING =
+  "Volg welke wetten de Europese Unie maakt, per beleidsterrein, met per voorstel de status en wat het voor Nederland betekent.";
 
 export const metadata: Metadata = {
-  title: "EU-wetgevingsmonitor — wat besluit Brussel, en wat merk jij ervan?",
-  description:
-    "Volg welke wetten de Europese Unie maakt, per beleidsterrein, en hoe die doorwerken in Nederland.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAAM} — wat besluit Brussel, en wat merk jij ervan?`,
+    template: `%s — ${SITE_NAAM}`,
+  },
+  description: BESCHRIJVING,
+  applicationName: SITE_NAAM,
+  alternates: { canonical: "/" },
+  keywords: [
+    "EU-wetgeving",
+    "Europese Unie",
+    "beleidsterreinen",
+    "EUR-Lex",
+    "wetsvoorstellen",
+    "Brussel",
+    "Nederland",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    siteName: SITE_NAAM,
+    title: `${SITE_NAAM} — wat besluit Brussel, en wat merk jij ervan?`,
+    description: BESCHRIJVING,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAAM,
+    description: BESCHRIJVING,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export const viewport: Viewport = {
@@ -38,26 +76,45 @@ export default function RootLayout({
               href="/"
               className="flex items-center gap-2 sm:gap-3 group min-w-0"
             >
-              <span className="inline-block h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-highlight shrink-0 ring-1 ring-accent/30" />
+              <EUVlag className="h-4 w-6 sm:h-[18px] sm:w-[27px] shrink-0 rounded-[2.5px] shadow-sm ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
               <span className="font-serif text-base sm:text-xl tracking-tight truncate">
                 <span className="text-accent font-semibold">EU</span>
                 <span className="text-ink">wetgevings</span>
                 <span className="text-accent">monitor</span>
               </span>
             </Link>
-            <nav className="text-xs sm:text-sm text-mute flex items-center gap-3 sm:gap-5 shrink-0">
+            <nav className="text-xs sm:text-sm text-mute flex items-center gap-3 sm:gap-4 shrink-0">
               <Link href="/" className="hover:text-ink hidden sm:inline">
                 Beleidsterreinen
               </Link>
+              <Link href="/zoeken" className="hover:text-ink hidden sm:inline">
+                Zoeken
+              </Link>
               <Link
                 href="/hoe-het-werkt"
-                className="hover:text-ink hidden sm:inline"
+                className="hover:text-ink hidden lg:inline"
               >
                 Hoe werkt het?
               </Link>
-              <Link href="/over" className="hover:text-ink hidden sm:inline">
+              <Link href="/over" className="hover:text-ink hidden lg:inline">
                 Over
               </Link>
+              <Link
+                href="/contact"
+                className="hover:text-ink hidden sm:inline"
+              >
+                Contact
+              </Link>
+              <a
+                href={NL_MONITOR_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Naar de Nederlandse Wetgevingsmonitor"
+                className="group hidden sm:inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 hover:border-accent hover:text-ink transition-colors"
+              >
+                <NLVlag className="h-3 w-[18px] rounded-[2px] ring-1 ring-black/10 transition-transform group-hover:-translate-y-0.5" />
+                <span>NL-monitor</span>
+              </a>
               <MobileMenu />
             </nav>
           </div>
