@@ -11,7 +11,7 @@ export default function Over() {
         De EU-wetgevingsmonitor maakt zichtbaar welke wetgeving de Europese
         Unie maakt, per beleidsterrein, en hoe die doorwerkt in Nederland. Veel
         Nederlanders weten weinig over wat er in Brussel wordt besloten,
-        terwijl een aanzienlijk deel van onze regels daar begint.
+        terwijl een deel van onze regels daar begint.
       </p>
 
       <p>
