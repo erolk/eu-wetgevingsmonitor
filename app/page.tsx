@@ -5,6 +5,20 @@ import { getAantallenPerThema } from "@/lib/eurlex";
 export default async function Home() {
   const { aantallen, totaal, fout } = await getAantallenPerThema();
 
+  // Tijdstip van deze (ISR-)render = effectief het moment van de laatste
+  // synchronisatie met EUR-Lex; de pagina wordt elke 24 uur opnieuw gebouwd.
+  const nu = new Date();
+  const syncDatum = new Intl.DateTimeFormat("nl-NL", {
+    day: "numeric",
+    month: "long",
+    timeZone: "Europe/Amsterdam",
+  }).format(nu);
+  const syncTijd = new Intl.DateTimeFormat("nl-NL", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Amsterdam",
+  }).format(nu);
+
   return (
     <div className="space-y-14">
       <section>
@@ -18,10 +32,16 @@ export default async function Home() {
           is, waar die in het proces zit, en hoe die doorwerkt in Nederland.
         </p>
         {!fout && totaal > 0 && (
-          <p className="mt-3 text-sm text-ink">
-            <span className="font-medium">{totaal}</span> lopende voorstellen
-            van de Europese Commissie, live uit EUR-Lex.
-          </p>
+          <>
+            <p className="mt-3 text-sm text-ink">
+              <span className="font-medium">{totaal}</span> lopende voorstellen
+              van de Europese Commissie, live uit EUR-Lex.
+            </p>
+            <p className="mt-1 text-xs text-mute">
+              Laatst gesynchroniseerd met EUR-Lex op {syncDatum}, {syncTijd} ·
+              ververst automatisch elke 24 uur.
+            </p>
+          </>
         )}
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
