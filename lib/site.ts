@@ -1,9 +1,23 @@
 // Centrale site-instellingen. De productie-URL is bij het bouwen nog niet
 // zeker (Vercel), dus overschrijfbaar via NEXT_PUBLIC_SITE_URL.
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://eu-wetgevingsmonitor.vercel.app"
-).replace(/\/$/, "");
+const STANDAARD_URL = "https://eu-wetgevingsmonitor.vercel.app";
+
+// Maakt van een (mogelijk slordig ingevoerde) env-waarde altijd een geldige
+// URL. Zonder dit zou bv. "eu-wetgevingsmonitor.vercel.app" (zonder https://)
+// of een typefout de build laten crashen op `new URL(SITE_URL)`.
+function veiligeSiteUrl(raw: string | undefined): string {
+  let u = (raw ?? "").trim();
+  if (!u) return STANDAARD_URL;
+  if (!/^https?:\/\//i.test(u)) u = `https://${u}`;
+  try {
+    return new URL(u).toString().replace(/\/$/, "");
+  } catch {
+    return STANDAARD_URL;
+  }
+}
+
+export const SITE_URL = veiligeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const SITE_NAAM = "EU-wetgevingsmonitor";
 
