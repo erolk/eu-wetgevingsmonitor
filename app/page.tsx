@@ -1,9 +1,14 @@
 import Link from "next/link";
 import { THEMAS } from "@/lib/themas";
 import { getAantallenPerThema } from "@/lib/eurlex";
+import { getAgendaDezeWeek } from "@/lib/agenda";
+import { Agenda } from "@/app/components/Agenda";
 
 export default async function Home() {
-  const { aantallen, totaal, fout } = await getAantallenPerThema();
+  const [{ aantallen, totaal, fout }, agenda] = await Promise.all([
+    getAantallenPerThema(),
+    getAgendaDezeWeek(),
+  ]);
 
   // Tijdstip van deze (ISR-)render = effectief het moment van de laatste
   // synchronisatie met EUR-Lex; de pagina wordt elke 24 uur opnieuw gebouwd.
@@ -52,6 +57,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      <Agenda data={agenda} />
 
       <section>
         <div className="flex items-baseline justify-between gap-3 mb-4">

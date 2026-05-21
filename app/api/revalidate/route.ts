@@ -31,5 +31,10 @@ export async function GET(request: Request) {
   }
 
   revalidateTag("voorstellen");
-  return NextResponse.json({ ok: true, revalidated: "voorstellen", at: Date.now() });
+  revalidateTag("agenda");
+  return NextResponse.json({
+    ok: true,
+    revalidated: ["voorstellen", "agenda"],
+    at: Date.now(),
+  });
 }
