@@ -21,6 +21,7 @@ werken. Laatst bijgewerkt: 20 mei 2026.
 | **Contactpagina** | `/contact` met formulier (naam, e-mail, bericht) via FormSubmit + honeypot tegen spam. | `app/contact/page.tsx`, `app/components/ContactFormulier.tsx` |
 | **Abonneerknop per terrein** | Knop "Abonneer op dit beleidsterrein" met e-mailveld; aanmelding gaat via FormSubmit naar de beheerder. | `app/components/Abonneer.tsx` |
 | **EU-vlag + NL-monitor-switch** | EU-vlag bij het logo; in het menu een NL-vlag-knop die naar de Nederlandse Wetgevingsmonitor linkt. | `EUVlag.tsx`, `NLVlag.tsx`, `layout.tsx` |
+| **Agenda deze week** | Uitschuifbare lijst met de plenaire debatten van het Europees Parlement deze week (live uit EP Open Data). | `lib/agenda.ts`, `app/components/Agenda.tsx` |
 
 ---
 
@@ -80,6 +81,12 @@ Zie **`DEPLOY.md`** voor het live zetten (env-vars, cron, FormSubmit-activatie).
 6. **Foutbestendigheid.** Als EUR-Lex even onbereikbaar is, valt de site netjes
    terug op een melding in plaats van te crashen (time-out + foutafhandeling).
    → `lib/eurlex.ts` (`getVoorstellen`, `fout`-vlag)
+
+7. **Wekelijkse agenda.** De homepage haalt automatisch de plenaire EP-agenda van
+   de huidige week op (EP Open Data API). Het EP vergadert ~maandelijks; in weken
+   zonder zitting toont de site de eerstvolgende. Dagelijks ververst (ISR + cron),
+   met terugval als de EP-API traag/onbereikbaar is.
+   → `lib/agenda.ts`
 
 ---
 
