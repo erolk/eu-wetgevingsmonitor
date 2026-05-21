@@ -15,6 +15,8 @@ const TYPE_KLEUR: Record<ActType, string> = {
 
 export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
   const v = voorstel;
+  // Diepe link naar de officiële EU Law Tracker voor de exacte procedure-status.
+  const lawTracker = `https://law-tracker.europa.eu/procedure/${v.celex}`;
   return (
     <article className="rounded-lg border border-line bg-surface p-4 sm:p-5 space-y-3">
       <div className="flex items-center justify-between gap-3">
@@ -94,15 +96,26 @@ export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
       </div>
 
       <div className="flex items-center justify-between gap-3 pt-1 text-xs">
-        <span className="font-mono text-mute">{v.celex}</span>
-        <a
-          href={v.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent underline hover:no-underline"
-        >
-          Lees op EUR-Lex →
-        </a>
+        <span className="font-mono text-mute shrink-0">{v.celex}</span>
+        <span className="flex items-center gap-3 shrink-0">
+          <a
+            href={lawTracker}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Exacte status op de officiële EU Law Tracker"
+            className="text-accent underline hover:no-underline"
+          >
+            Law Tracker ↗
+          </a>
+          <a
+            href={v.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline hover:no-underline"
+          >
+            EUR-Lex ↗
+          </a>
+        </span>
       </div>
     </article>
   );
