@@ -67,7 +67,7 @@ export function Agenda({ data }: { data: AgendaResultaat }) {
           De agenda voor deze week wordt nog gepubliceerd.
         </p>
       ) : (
-        <ul className="border-t border-line text-sm">
+        <ul className="border-t border-line divide-y divide-line/60 text-xs">
           {zichtbaar.map((p, i) => (
             <li key={i}>
               <div className="grid grid-cols-[3.25rem_1fr] gap-x-3 items-baseline px-4 py-1 hover:bg-paper transition">
