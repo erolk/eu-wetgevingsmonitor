@@ -115,7 +115,7 @@ export function Voorstelkaart({ voorstel }: { voorstel: Voorstel }) {
             rel="noopener noreferrer"
             className="text-accent underline hover:no-underline"
           >
-            Tekst ↗
+            EUR-Lex ↗
           </a>
         </span>
       </div>
