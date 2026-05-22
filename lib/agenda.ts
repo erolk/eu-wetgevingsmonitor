@@ -31,7 +31,7 @@ const PROCEDUREEL = [
 
 // True voor ruis: hoofdletter-koppen (geen kleine letter, bv. "PLENAIRE
 // VERGADERING") en procedurele punten.
-function isOnbruikbaar(titel: string): boolean {
+export function isOnbruikbaar(titel: string): boolean {
   if (!/[a-zà-ÿ]/.test(titel)) return true;
   const t = titel.toLowerCase();
   return PROCEDUREEL.some((p) => t.includes(p));
@@ -72,7 +72,7 @@ function ymd(d: Date): string {
 }
 
 /** Maandag en zondag (yyyy-mm-dd) van de week rond datum d. */
-function weekGrenzen(d: Date): [string, string] {
+export function weekGrenzen(d: Date): [string, string] {
   const dag = (d.getUTCDay() + 6) % 7; // 0 = maandag
   const ma = new Date(
     Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() - dag),

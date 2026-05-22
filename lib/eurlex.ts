@@ -215,6 +215,18 @@ const CODE_NAAR_THEMA: Record<string, string> = {
 
 const GELDIGE_SLUGS = new Set(THEMAS.map((t) => t.slug));
 
+/** Beleidsterrein-slugs voor een set subject-matter-codes (gededupliceerd,
+ *  alleen geldige slugs). Een voorstel erft de terreinen van al zijn codes. */
+export function themaSlugsVanCodes(codes: string[]): string[] {
+  return Array.from(
+    new Set(
+      codes
+        .map((c) => CODE_NAAR_THEMA[c])
+        .filter((slug): slug is string => !!slug && GELDIGE_SLUGS.has(slug)),
+    ),
+  );
+}
+
 /** Datum (yyyy-mm-dd) van vandaag minus N maanden — stabiel binnen één dag,
  *  zodat de SPARQL-URL en daarmee de Next.js fetch-cache niet per call wisselt. */
 function ondergrensDatum(): string {
@@ -257,7 +269,7 @@ LIMIT ${LIMIET}`;
 // Bepaal het type op basis van het instrument vóóraan in de titel. Niet via
 // "bevat het woord X", want titels verwijzen vaak naar ándere handelingen
 // (bv. een uitvoeringsbesluit dat een richtlijn of verordening wijzigt).
-function bepaalType(titel: string): ActType {
+export function bepaalType(titel: string): ActType {
   const up = titel.trim().toUpperCase();
   if (up.startsWith("AANBEVELING")) return "Aanbeveling";
   if (up.startsWith("MEDEDELING")) return "Mededeling";
@@ -271,7 +283,7 @@ function bepaalType(titel: string): ActType {
 
 // Automatische terugval-uitleg op basis van het type en de onderwerpen, voor
 // voorstellen die (nog) geen vooraf gegenereerde samenvatting hebben.
-function sjabloonUitleg(type: ActType, onderwerpen: string[]): string {
+export function sjabloonUitleg(type: ActType, onderwerpen: string[]): string {
   const ond = onderwerpen.length
     ? ` Onderwerp: ${onderwerpen.slice(0, 3).join(", ").toLowerCase()}.`
     : "";
@@ -292,7 +304,7 @@ function sjabloonUitleg(type: ActType, onderwerpen: string[]): string {
 }
 
 type Binding = { value: string };
-type Row = {
+export type Row = {
   celex: Binding;
   date: Binding;
   title: Binding;
@@ -302,19 +314,13 @@ type Row = {
   aangenomenDatum?: Binding;
 };
 
-function rijNaarVoorstel(r: Row): Voorstel {
+export function rijNaarVoorstel(r: Row): Voorstel {
   const codes = (r.codes?.value ?? "")
     .split(",")
     .map((c) => c.trim())
     .filter(Boolean);
 
-  const themaSlugs = Array.from(
-    new Set(
-      codes
-        .map((c) => CODE_NAAR_THEMA[c])
-        .filter((slug): slug is string => !!slug && GELDIGE_SLUGS.has(slug)),
-    ),
-  );
+  const themaSlugs = themaSlugsVanCodes(codes);
 
   const onderwerpen = Array.from(
     new Set(

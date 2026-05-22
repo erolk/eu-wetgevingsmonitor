@@ -6,12 +6,19 @@ const STANDAARD_URL = "https://eu-wetgevingsmonitor.vercel.app";
 // Maakt van een (mogelijk slordig ingevoerde) env-waarde altijd een geldige
 // URL. Zonder dit zou bv. "eu-wetgevingsmonitor.vercel.app" (zonder https://)
 // of een typefout de build laten crashen op `new URL(SITE_URL)`.
-function veiligeSiteUrl(raw: string | undefined): string {
+export function veiligeSiteUrl(raw: string | undefined): string {
   let u = (raw ?? "").trim();
   if (!u) return STANDAARD_URL;
   if (!/^https?:\/\//i.test(u)) u = `https://${u}`;
   try {
-    return new URL(u).toString().replace(/\/$/, "");
+    const url = new URL(u);
+    // new URL is tolerant; eis http(s) én een plausibele hostnaam (een punt,
+    // alleen geldige tekens), anders terugval. Voorkomt rare metadataBase-waarden.
+    const geldigeHost = /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(url.hostname);
+    if ((url.protocol === "https:" || url.protocol === "http:") && geldigeHost) {
+      return url.toString().replace(/\/$/, "");
+    }
+    return STANDAARD_URL;
   } catch {
     return STANDAARD_URL;
   }

@@ -1,0 +1,33 @@
+name: CI
+
+# Draait bij elke push en pull request. Met "branch protection" op main kun je
+# afdwingen dat deze checks slagen voordat er iets gemerged/gedeployd wordt.
+on:
+  push:
+  pull_request:
+
+jobs:
+  controleren:
+    name: Typecheck, tests & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Dependencies installeren
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Productie-build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

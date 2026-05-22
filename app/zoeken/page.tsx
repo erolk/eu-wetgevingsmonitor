@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getVoorstellen, type Voorstel } from "@/lib/eurlex";
-import { getThema } from "@/lib/themas";
+import { getVoorstellen } from "@/lib/eurlex";
+import { zoekVoorstellen } from "@/lib/zoek";
 import { Voorstelkaart } from "@/app/components/Voorstelkaart";
 
 export const metadata: Metadata = {
@@ -12,34 +12,11 @@ export const metadata: Metadata = {
 
 type Params = { searchParams: Promise<{ q?: string }> };
 
-// Bouwt de doorzoekbare tekst van één voorstel (titel, onderwerpen, uitleg,
-// CELEX en de namen van de beleidsterreinen waar het onder valt).
-function zoektekst(v: Voorstel): string {
-  const themas = v.themaSlugs
-    .map((s) => getThema(s)?.naam ?? "")
-    .join(" ");
-  return [v.titel, v.onderwerpen.join(" "), v.uitleg, v.celex, v.type, themas]
-    .join(" ")
-    .toLowerCase();
-}
-
 export default async function ZoekenPage({ searchParams }: Params) {
   const { q } = await searchParams;
   const query = (q ?? "").trim();
   const { voorstellen, fout } = await getVoorstellen();
-
-  // Alle losse woorden moeten voorkomen (AND), accent-ongevoelig.
-  const combineerteken = new RegExp("[\\u0300-\\u036f]", "g");
-  const normaliseer = (s: string) => s.normalize("NFD").replace(combineerteken, "");
-  const woorden = normaliseer(query.toLowerCase()).split(/\s+/).filter(Boolean);
-
-  const resultaten =
-    woorden.length === 0
-      ? []
-      : voorstellen.filter((v) => {
-          const tekst = normaliseer(zoektekst(v));
-          return woorden.every((w) => tekst.includes(w));
-        });
+  const resultaten = zoekVoorstellen(voorstellen, query);
 
   return (
     <div className="space-y-8">
