@@ -10,7 +10,6 @@ const LINKS = [
   { href: "/hoe-het-werkt", label: "Hoe werkt het?" },
   { href: "/over", label: "Over" },
   { href: "/contact", label: "Contact" },
-  { href: "/test", label: "Test" },
 ];
 
 export function MobileMenu() {
