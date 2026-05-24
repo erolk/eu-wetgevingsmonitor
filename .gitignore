@@ -12,3 +12,6 @@ tsconfig.tsbuildinfo
 data/outbox/
 data/subscriptions.json
 data/snapshot.json
+
+# Lokale referentie-afbeelding (niet nodig in de repo).
+site_test.PNG
