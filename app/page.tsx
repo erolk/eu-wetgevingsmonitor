@@ -2,12 +2,15 @@ import Link from "next/link";
 import { THEMAS } from "@/lib/themas";
 import { getAantallenPerThema } from "@/lib/eurlex";
 import { getAgendaDezeWeek } from "@/lib/agenda";
+import { getUitgelichteWet } from "@/lib/uitgelicht";
 import { Agenda } from "@/app/components/Agenda";
+import { UitgelichteWet } from "@/app/components/UitgelichteWet";
 
 export default async function Home() {
-  const [{ aantallen, totaal, fout }, agenda] = await Promise.all([
+  const [{ aantallen, totaal, fout }, agenda, uitgelicht] = await Promise.all([
     getAantallenPerThema(),
     getAgendaDezeWeek(),
+    getUitgelichteWet(),
   ]);
 
   // Tijdstip van deze (ISR-)render = effectief het moment van de laatste
@@ -57,6 +60,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
+
+      <UitgelichteWet item={uitgelicht} />
 
       <Agenda data={agenda} />
 
