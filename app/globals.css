@@ -46,9 +46,12 @@ body {
 }
 
 body {
+  /* Ingetogen, neutrale textuur — zelfde recept als de Nederlandse
+     Wetgevingsmonitor, maar met het EU-palet (paper/line i.p.v. blauw/geel),
+     zodat de achtergrond rustig oogt zonder gekleurde hoekgloed. */
   background-image:
-    radial-gradient(at 30% 12%, rgb(var(--accent) / 0.05) 0%, transparent 55%),
-    radial-gradient(at 82% 90%, rgb(var(--highlight) / 0.06) 0%, transparent 55%);
+    radial-gradient(at 28% 18%, rgb(var(--paper) / 0.55) 0, transparent 55%),
+    radial-gradient(at 78% 88%, rgb(var(--line) / 0.18) 0, transparent 60%);
   /* Geen background-attachment: fixed — dat rendert op mobiele browsers
      (vooral iOS Safari) inconsistent t.o.v. desktop. */
 }
@@ -78,9 +81,11 @@ hr {
 .thema-tile:hover {
   border-color: rgb(var(--accent));
   transform: translateY(-3px);
+  /* Neutrale, zachte schaduw zoals de NL-monitor (op basis van --ink i.p.v.
+     een blauwe gloed); de hover-rand blijft wel EU-blauw. */
   box-shadow:
-    0 10px 24px -6px rgb(var(--accent) / 0.18),
-    0 4px 10px -2px rgb(var(--ink) / 0.08);
+    0 10px 24px -6px rgb(var(--ink) / 0.18),
+    0 4px 10px -2px rgb(var(--ink) / 0.1);
 }
 .dark .thema-tile {
   border-color: rgb(var(--line));
