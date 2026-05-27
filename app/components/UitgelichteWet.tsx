@@ -32,7 +32,7 @@ export function UitgelichteWet({ item }: { item: UitgelichtItem | null }) {
         </div>
         <p className="mt-1.5 text-sm text-mute">{categorie.subtitel}</p>
 
-        <h2 className="mt-3 font-serif text-xl sm:text-2xl leading-snug text-ink">
+        <h2 className="mt-3 font-serif text-lg sm:text-xl leading-snug text-ink">
           <a
             href={v.url}
             target="_blank"
