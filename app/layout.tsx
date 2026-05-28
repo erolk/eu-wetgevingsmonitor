@@ -17,7 +17,17 @@ export const metadata: Metadata = {
   },
   description: BESCHRIJVING,
   applicationName: SITE_NAAM,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": [
+        {
+          url: "/feed/wet-van-de-week.xml",
+          title: `${SITE_NAAM} — wet van de week`,
+        },
+      ],
+    },
+  },
   keywords: [
     "EU-wetgeving",
     "Europese Unie",
@@ -146,6 +156,15 @@ export default function RootLayout({
               Brongegevens: open data van de Europese Unie (EUR-Lex,
               Europees Parlement). Deze website is geen officiële website van
               de Europese Unie of de Rijksoverheid.
+            </p>
+            <p className="mt-3">
+              <a
+                href="/feed/wet-van-de-week.xml"
+                className="hover:text-ink underline-offset-2 hover:underline"
+                title="Abonneer in je RSS-reader"
+              >
+                Wet van de week — RSS-feed
+              </a>
             </p>
           </div>
         </footer>
